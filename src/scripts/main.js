@@ -3,7 +3,7 @@ if (typeof AOS !== 'undefined') {
     AOS.init();
 }
 
-const dataDoEvento = new Date('2024-12-12T19:00:00'); // Data futura para testar o cronômetro
+const dataDoEvento = new Date('2024-09-20T19:00:00'); // Ajustado para 10 dias no futuro
 const timeStampDoEvento = dataDoEvento.getTime();
 
 const contaAsHoras = setInterval(function() {
