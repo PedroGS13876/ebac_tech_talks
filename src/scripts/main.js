@@ -1,6 +1,9 @@
-AOS.init();
+// Inicializa AOS, se a biblioteca estiver presente
+if (typeof AOS !== 'undefined') {
+    AOS.init();
+}
 
-const dataDoEvento = new Date("Dec 12, 2022 19:00:00");
+const dataDoEvento = new Date('2024-12-12T19:00:00'); // Data futura para testar o cronômetro
 const timeStampDoEvento = dataDoEvento.getTime();
 
 const contaAsHoras = setInterval(function() {
@@ -18,10 +21,17 @@ const contaAsHoras = setInterval(function() {
     const minutosAteOEvento = Math.floor((distanciaAteOEvento % horaEmMs) / minutoEmMs);
     const segundosAteOEvento = Math.floor((distanciaAteOEvento % minutoEmMs) / 1000);
 
-    document.getElementById('contador').innerHTML = `${diasAteOEvento}d ${horasAteOEvento}h ${minutosAteOEvento}m ${segundosAteOEvento}s`;
+    // Verifica se o elemento existe no DOM
+    const contador = document.getElementById('contador');
+    if (contador) {
+        contador.innerHTML = `${diasAteOEvento}d ${horasAteOEvento}h ${minutosAteOEvento}m ${segundosAteOEvento}s`;
+    }
 
+    // Quando a contagem regressiva termina
     if (distanciaAteOEvento < 0) {
         clearInterval(contaAsHoras);
-        document.getElementById('contador').innerHTML = 'Evento expirado';
+        if (contador) {
+            contador.innerHTML = 'Evento expirado';
+        }
     }
 }, 1000);
